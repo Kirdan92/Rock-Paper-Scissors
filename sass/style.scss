@@ -1,0 +1,274 @@
+* {
+  box-sizing: border-box;
+
+}
+body {
+	padding-top: 60px;
+	text-align: center;
+	background: #40739e;
+	font-size: 18px;
+	font-family: 'Nunito', sans-serif;
+}
+.game-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 25% 1fr 25%;
+	grid-template-rows: 1fr 1fr auto;
+	grid-template-areas:
+		"points comp new-game"
+		"score output log"
+		". player log";
+	grid-gap: 15px;
+	
+
+}
+#computer-move-container {
+	background-color: #ff6b6b;
+	grid-area: comp;
+	display: grid;
+	grid-template-rows: 1fr auto;
+	font-size: 1.2em;
+}
+#computer-move-container i {
+	font-size: 2.2em;
+	
+}
+.hide-comp-move {
+	display: none;
+}
+.show-comp-move {
+	display: block;
+}
+
+#log-container {
+	background-color: #fff;
+	grid-area: log;
+	display: grid;
+	grid-template-rows: auto 1fr;
+	h2 {
+		margin: 0;
+		color: green;
+		&:hover {
+			color: #ff6b6b;
+		}
+	}
+}
+
+#log-container	.text-container {
+		padding: 5px;
+		overflow-y: scroll;
+		word-wrap: break-word;
+	}
+/* Points styles*/
+#point-to-win-container {
+	grid-area: points;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-size: 1em;
+}
+#point-to-win-container h2 {
+	margin: 0;
+}
+/* Score styles*/
+#score-container {
+	background-color: #01a3a4;
+	grid-area: score;
+	display: grid;
+	font-size: 1em;
+}
+.score-header {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+.player-header, .computer-header {
+	margin: 0;
+}
+.points-container {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	font-size: 2em;
+}
+
+/*New game styles*/
+#new-game-container {
+	background-color: green;
+	grid-area: new-game;
+	display: grid;
+}
+#new-game-btn {
+	z-index: 2;
+	font-size: 1.5em;
+	color: #10ac84;
+	border: 2px solid #10ac84;
+	background: #222f3e;
+	display: flex;
+	justify-content: center;	
+}
+#new-game-btn:hover {
+	color: #222f3e;
+	background: #10ac84;
+}
+#new-game-btn i {
+	margin-right: 10px;
+}
+#move-output-container {
+	background-color: #dfe4ea;
+	grid-area: output;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2em;
+	padding: 0 10px;
+}
+.warning {
+	transition: color 0.45s;
+	color: #EA2027;
+	border: 2px solid #EA2027;
+	outline: 6px solid rgba(211, 0, 0, 0.7);
+	font-weight: 700;
+}
+.success {
+	transition: color 0.45s;
+	color: #009432;
+	border: 2px solid #009432;
+	outline: 6px solid rgba(22, 148, 0, 0.7);
+	font-weight: 700;
+}
+#player-move-container {
+	grid-area: player;
+	background-color: #2e86de;
+	display: flex;
+	flex-direction: column;
+	min-height: 95px;
+}
+#player-move-container header {
+	margin-bottom: 10px;
+}
+#player-move-buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 10px;
+}
+#player-move-buttons button {
+	font-size: 2.6em;
+	border: none;
+	background: none;
+}
+#player-move-buttons button:hover {
+	color: #fff;
+	border: 1px solid #fff;
+}
+.text-container {
+	max-height: 150px;
+	font-size: 10px;
+}
+
+
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	overflow-y: scroll;
+	&.show {
+		display: flex;
+	}
+}
+
+.modal {
+	display: none;
+	width: auto;
+	max-width: 600px;
+	margin-bottom: 10px;
+	padding: 10px;
+	color: #10ac84;
+	border: 2px solid #10ac84;
+	background: #222f3e;
+	&.show {
+		display: block;
+	}
+	
+	.close {
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding: 5px;
+		color: #000;
+		text-decoration: none;
+	}
+	
+	header {
+		font-size: 20px;
+		line-height: 30px;
+		min-height: 30px;
+		font-weight: bold;
+		padding: 0 30px;
+	}
+
+	.content {
+		min-height: 30px;
+		padding: 5px 30px;
+	}
+}
+#new-game-modal {	
+	flex-direction: column;
+	align-items: flex-start;
+	input {
+		width: 100%;
+		margin-bottom: 10px;
+		font-size: 16px;
+	}
+	&.show {
+		display: flex;
+	}
+	button {
+		align-self: center;
+		padding: 10px;
+		min-width: 100px;
+		color: #222f3e;
+		background-color: #10ac84;
+		text-transform: uppercase;
+		font-size: 20px;
+		border: 2px solid #009432;
+	}
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #10ac84;
+    color: #222f3e;
+}
+@media (max-width: 850px) {
+	.game-container {
+		width: 100%;
+		padding: 0 10px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr auto auto;
+		grid-gap-row: 20px;
+		grid-template-areas:
+			"points new-game"
+			"score comp"
+			"output output "
+			"player player"
+			"log log";
+
+	}
+}
+
+
+	
