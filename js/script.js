@@ -2,6 +2,7 @@
 (function () {
 	//Variables declaration
 	var newGameBtn = document.getElementById("new-game-btn");
+	var btnYes = document.getElementById("btn-yes");
 	var modals = document.querySelectorAll('.modal');
 	var getValuesBtn = document.getElementById("getValuesBtn");
 	var playerName, winningPoints;
@@ -47,6 +48,8 @@
 
 //---------------------Events---------------------
 	newGameBtn.addEventListener("click", newGame);
+	btnYes.addEventListener("click", newGame);
+
 	getValuesBtn.addEventListener("click", getValues);
 
 	var playerMoves = document.querySelectorAll(".player-move");
@@ -248,6 +251,16 @@
 	}
 	
 
+
+	var hideModals = function(event) {
+		document.querySelector('#modal-overlay').classList.remove('show');
+		for(var i = 0; i < modals.length; i++){
+			modals[i].classList.remove('show');
+		}
+	}
+	var noBtn = document.querySelector("#btn-no");
+	noBtn.addEventListener('click', hideModals);
+	
 	var hideModal = function(event){
 		event.preventDefault();
 		document.querySelector('#modal-overlay').classList.remove('show');
